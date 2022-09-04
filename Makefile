@@ -1,18 +1,15 @@
 DOCKER = $(shell which docker)
 
-all: build up
-
-build:
-	$(DOCKER) build -t jenkins-blueocean:2.346.3-1 .
+all: up start
 
 up:
-	$(DOCKER) compose up -d
-
-down:
-	$(DOCKER) compose down
+	$(DOCKER) compose up -d --no-start
 
 start:
 	$(DOCKER) compose start
 
 stop:
 	$(DOCKER) compose stop
+
+down:
+	$(DOCKER) compose down --rmi all --volumes

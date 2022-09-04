@@ -1,12 +1,29 @@
-FROM jenkins/jenkins:2.346.3-jdk11
-USER root
-RUN apt-get update && apt-get install -y lsb-release
-RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
-  https://download.docker.com/linux/debian/gpg
-RUN echo "deb [arch=$(dpkg --print-architecture) \
-  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
-  https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y docker-ce-cli
+FROM jenkins/jenkins:latest-jdk11
+
+LABEL maintainer="dimitri.sifoua@gmail.com"
+
+USER ROOT
+
+COPY --from=docker:dind /usr/local/bin/docker /usr/bin/
+
 USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean:1.25.6 docker-workflow:1.29"
+
+ARG JENKINS_ADMIN_EMAIL
+ARG JENKINS_ADMIN_DESCRIPTION
+ARG JENKINS_ADMIN_NAME
+ARG JENKINS_ADMIN_PASSWORD
+ARG JENKINS_ADMIN_USER
+ARG JENKINS_URL
+
+ENV JENKINS_ADMIN_EMAIL $JENKINS_ADMIN_EMAIL
+ENV JENKINS_ADMIN_DESCRIPTION $JENKINS_ADMIN_DESCRIPTION
+ENV JENKINS_ADMIN_NAME $JENKINS_ADMIN_NAME
+ENV JENKINS_ADMIN_PASSWORD $JENKINS_ADMIN_PASSWORD
+ENV JENKINS_ADMIN_USER $JENKINS_ADMIN_USER
+ENV JENKINS_URL $JENKINS_URL
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
+COPY plugins.txt $REF/plugins.txt
+COPY jenkins.yaml $JENKINS_HOME/jenkins.yaml
+
+RUN jenkins-plugin-cli -f $REF/plugins.txt

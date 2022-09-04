@@ -1,8 +1,8 @@
 version: "3.8"
 services:
   docker:
+    container_name: docker
     image: docker:dind
-    container_name: jenkins-docker
     privileged: true
     networks:
       - jenkins
@@ -15,10 +15,19 @@ services:
       - "2376:2376"
     command: --storage-driver=overlay2
 
-  jenkins-blueocean:
-    image: jenkins-blueocean:2.346.3-1
+  jenkins:
+    container_name: jenkins
+    build:
+      context: .
+      args:
+        - JENKINS_ADMIN_EMAIL=${JENKINS_ADMIN_EMAIL}
+        - JENKINS_ADMIN_DESCRIPTION=${JENKINS_ADMIN_DESCRIPTION}
+        - JENKINS_ADMIN_NAME=${JENKINS_ADMIN_NAME}
+        - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
+        - JENKINS_ADMIN_USER=${JENKINS_ADMIN_USER}
+        - JENKINS_URL=${JENKINS_URL}
+    image: jenkins:latest
     restart: on-failure
-    container_name: jenkins-blueocean
     networks:
       - jenkins
     environment:

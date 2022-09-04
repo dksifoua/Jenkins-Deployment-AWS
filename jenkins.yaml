@@ -1,0 +1,45 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: ${JENKINS_ADMIN_USER}
+          name: ${JENKINS_ADMIN_NAME}
+          description: ${JENKINS_ADMIN_DESCRIPTION}
+          password: ${JENKINS_ADMIN_PASSWORD}
+          properties:
+            - mailer:
+                emailAddress: ${JENKINS_ADMIN_EMAIL}
+
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "USER:Overall/Administer:dksifoua"
+
+  remotingSecurity:
+    enabled: true
+
+  nodes:
+    - permanent:
+        labelString: "linux docker test"
+        mode: NORMAL
+        name: "agent"
+        remoteFS: "/home/agent"
+        launcher:
+          jnlp:
+            workDirSettings:
+              disabled: true
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+              workDirPath: "/tmp"
+
+security:
+  queueItemAuthenticator:
+    authenticators:
+      - global:
+          strategy: triggeringUsersAuthorizationStrategy
+
+unclassified:
+  location:
+    adminAddress: ${JENKINS_ADMIN_EMAIL}
+    url: ${JENKINS_URL}
