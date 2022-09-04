@@ -1,4 +1,5 @@
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![MIT License](https://img.shields.io/github/license/dksifoua/Jenkins-Configuration-as-Code?color=blue&label=License)
+
 
 # Jenkins
 
