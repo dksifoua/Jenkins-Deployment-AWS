@@ -1,3 +1,4 @@
 .idea/
 
 .env
+jenkins_agent*

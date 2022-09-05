@@ -1,9 +1,22 @@
 version: "3.8"
 services:
+  agent:
+    container_name: agent
+    image: jenkins/ssh-agent:latest-jdk11
+    privileged: true
+    user: root
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDBoXAwxYE1+UuRvQH3t8W5m9hBywiO2HJ5z/XhqDIq97Sc9zCkYMrgUgDTsbEksEOIKSJFd+UES7C5anZY9UHeoOc7NxTCXClUZRyQphz2wqKzWin6qPJ2mHh8FatXRjNJMCAYnNg9e+CbgyFaoyoRq+F2wDw1OMJ8hocy32r9go9WGHbliiJZVj03jb+l55LCF2JVbDY2UJBgMHUm2hFm0Ks1CiHy4q/j3GOQMk6MkBijdGZq3lvCfx3Rr9kgjZi51Yo+PGksH3+J0pok5wy8OdkV1RbkPZIxgP3Qh3ohgzWlpRLulquGJCF8BJISaKuMHcLhChlQnnwYvStKSv+LUasm9upAWpWGKYiT9Q6yI7b+tUkpCIJ4YA7bxs5O8dHzj7jvLkm/wmtgdIojFniEsPDuLzY3hpVdLelue5vmNYge0zYf3OWM7IzNceyMMP2Ey9F4UCgWGFWKxHkFzR8CKA6mF76q6kMzGh2weVYvI+Z8xafhpTNU6SgHFkT+ums= dksifoua@DESKTOP-U32AENP
+    networks:
+      - jenkins
+    expose:
+      - 22
+
   docker:
     container_name: docker
     image: docker:dind
     privileged: true
+    command: --storage-driver=overlay2
     networks:
       - jenkins
     environment:
@@ -13,7 +26,6 @@ services:
       - jenkins-data:/var/jenkins_home
     ports:
       - "2376:2376"
-    command: --storage-driver=overlay2
 
   jenkins:
     container_name: jenkins
@@ -26,7 +38,6 @@ services:
         - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
         - JENKINS_ADMIN_USER=${JENKINS_ADMIN_USER}
         - JENKINS_URL=${JENKINS_URL}
-    image: jenkins:latest
     restart: on-failure
     networks:
       - jenkins

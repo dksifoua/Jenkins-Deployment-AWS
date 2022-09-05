@@ -21,17 +21,36 @@ jenkins:
 
   nodes:
     - permanent:
-        labelString: "linux docker test"
+        labelString: "agent linux docker"
         mode: NORMAL
         name: "agent"
-        remoteFS: "/home/agent"
+        numExecutors: 4
+        remoteFS: "/home/jenkins/agent"
         launcher:
-          jnlp:
-            workDirSettings:
-              disabled: true
-              failIfWorkDirIsMissing: false
-              internalDir: "remoting"
-              workDirPath: "/tmp"
+          ssh:
+            host: agent
+            port: 22
+            credentialsId: jenkins_agent
+            launchTimeoutSeconds: 60
+            maxNumRetries: 3
+            retryWaitTime: 30
+            sshHostKeyVerificationStrategy:
+              manuallyTrustedKeyVerificationStrategy:
+                requireInitialManualTrust: false
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - basicSSHUserPrivateKey:
+              scope: SYSTEM
+              id: jenkins_agent
+              username: jenkins
+              passphrase: ""
+              description: "Jenkins agent key"
+              privateKeySource:
+                directEntry:
+                  privateKey: "${readFile:${JENKINS_HOME}/jenkins_agent}"
 
 security:
   queueItemAuthenticator:

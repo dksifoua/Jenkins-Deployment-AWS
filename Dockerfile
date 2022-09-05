@@ -25,5 +25,5 @@ ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 COPY plugins.txt $REF/plugins.txt
 COPY jenkins.yaml $JENKINS_HOME/jenkins.yaml
-
+COPY jenkins_agent $JENKINS_HOME/jenkins_agent
 RUN jenkins-plugin-cli -f $REF/plugins.txt
