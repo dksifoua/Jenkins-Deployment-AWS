@@ -14,7 +14,7 @@ jenkins:
   authorizationStrategy:
     globalMatrix:
       permissions:
-        - "USER:Overall/Administer:dksifoua"
+        - "USER:Overall/Administer:${JENKINS_ADMIN_USER}"
 
   remotingSecurity:
     enabled: true

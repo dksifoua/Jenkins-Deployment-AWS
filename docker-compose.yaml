@@ -6,7 +6,7 @@ services:
     privileged: true
     user: root
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDBoXAwxYE1+UuRvQH3t8W5m9hBywiO2HJ5z/XhqDIq97Sc9zCkYMrgUgDTsbEksEOIKSJFd+UES7C5anZY9UHeoOc7NxTCXClUZRyQphz2wqKzWin6qPJ2mHh8FatXRjNJMCAYnNg9e+CbgyFaoyoRq+F2wDw1OMJ8hocy32r9go9WGHbliiJZVj03jb+l55LCF2JVbDY2UJBgMHUm2hFm0Ks1CiHy4q/j3GOQMk6MkBijdGZq3lvCfx3Rr9kgjZi51Yo+PGksH3+J0pok5wy8OdkV1RbkPZIxgP3Qh3ohgzWlpRLulquGJCF8BJISaKuMHcLhChlQnnwYvStKSv+LUasm9upAWpWGKYiT9Q6yI7b+tUkpCIJ4YA7bxs5O8dHzj7jvLkm/wmtgdIojFniEsPDuLzY3hpVdLelue5vmNYge0zYf3OWM7IzNceyMMP2Ey9F4UCgWGFWKxHkFzR8CKA6mF76q6kMzGh2weVYvI+Z8xafhpTNU6SgHFkT+ums= dksifoua@DESKTOP-U32AENP
+      - JENKINS_AGENT_SSH_PUBKEY=${JENKINS_AGENT_SSH_PUBKEY}
     networks:
       - jenkins
     expose:

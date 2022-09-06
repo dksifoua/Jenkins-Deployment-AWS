@@ -1,15 +1,17 @@
-DOCKER = $(shell which docker)
+all: ssh up start
 
-all: up start
+ssh:
+	ssh-keygen -b 2048 -t rsa -f jenkins_agent -q -N ""
 
+up: export JENKINS_AGENT_SSH_PUBKEY=$(shell cat jenkins_agent.pub)
 up:
-	$(DOCKER) compose up -d --no-start
+	docker compose up -d --no-start
 
 start:
-	$(DOCKER) compose start
+	docker compose start
 
 stop:
-	$(DOCKER) compose stop
+	docker compose stop
 
 down:
-	$(DOCKER) compose down --rmi all --volumes
+	docker compose down --rmi all --volumes
