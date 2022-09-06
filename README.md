@@ -15,11 +15,12 @@ state of our Jenkins configuration as one or more YAML file(s), eliminating the 
 configure Jenkins according to the configuration file(s), greatly reducing the configuration time and eliminating human errors.
 
 Docker is the de facto standard for creating and running containers, which is a virtualization technology that allows to run isolated, self-contained applications consistently 
-across different operation systems (OS) and hardware architectures. We will run our Jenkins instance using Docker to take advantage of this consistency and cross-platform capability.
+across different operating systems (OS) and hardware architectures. We will run our Jenkins instance using Docker to take advantage of this consistency and cross-platform capability.
 
 ## Prerequisites
 
 * Linux & MacOS
+  * If you are a Windows (10 or higher) user, you can use the Windows Subsystem for Linux (WSL) to run a GNU/Linux environment.
 * [Docker](https://www.docker.com/)
 * [GNU make](https://www.gnu.org/software/make/manual/make.html#toc-Overview-of-make)
 
