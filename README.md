@@ -17,20 +17,20 @@ configure Jenkins according to the configuration file(s), greatly reducing the c
 Docker is the de facto standard for creating and running containers, which is a virtualization technology that allows to run isolated, self-contained applications consistently 
 across different operation systems (OS) and hardware architectures. We will run our Jenkins instance using Docker to take advantage of this consistency and cross-platform capability.
 
+## Prerequisites
+
+* Linux & MacOS
+* [Docker](https://www.docker.com/)
+* [GNU make](https://www.gnu.org/software/make/manual/make.html#toc-Overview-of-make)
+
 ## Installation
 
-Before the installation, make sure you have Docker installed on your machine. If not, you can install Docker via the [official installation web page](https://docs.docker.com/engine/install/).
+First, copy the `.env.example` file into a new file `.env` and fill it up.
 
-After Docker is successfully installed, run the command below:
+Then, run the command below to install Jenkins programmatically:
 
 ```shell
 $ make
-```
-
-If you don't have `make` installed, the command won't work. You can install by running the  command 
-
-```shell
-$ sudo apt-get -y install make
 ```
 
 After the installation completed, you can access Jenkins UI via [localhost:8080](http://localhost:8080/)
