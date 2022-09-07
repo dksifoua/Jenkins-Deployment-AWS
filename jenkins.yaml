@@ -42,6 +42,12 @@ credentials:
   system:
     domainCredentials:
       - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: github_${GITHUB_USER}
+              username: ${GITHUB_USER}
+              password: ${GITHUB_PASSWORD}
+              description: "GitHub credentials"
           - basicSSHUserPrivateKey:
               scope: SYSTEM
               id: jenkins_agent
