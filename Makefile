@@ -1,4 +1,7 @@
-all: ssh up start
+all: clean ssh up start
+
+clean:
+	rm -vf jenkins_agent jenkins_agent.pub
 
 ssh:
 	ssh-keygen -b 2048 -t rsa -f jenkins_agent -q -N ""
