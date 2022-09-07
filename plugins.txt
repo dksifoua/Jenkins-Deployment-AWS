@@ -4,4 +4,5 @@ configuration-as-code:latest
 docker-workflow:latest
 github:latest
 matrix-auth:latest
+workflow-multibranch:latest
 ssh-slaves:latest
