@@ -1,8 +1,0 @@
-authorize-project:latest
-blueocean:latest
-configuration-as-code:latest
-docker-workflow:latest
-github:latest
-matrix-auth:latest
-multibranch-scan-webhook-trigger:latest
-ssh-slaves:latest

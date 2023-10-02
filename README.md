@@ -3,10 +3,12 @@
 
 # Jenkins
 
-Jenkins is one of the most popular open-source automation servers, often used to orchestrate continuous integration (CI) and/or continuous deployment (CD) workflows.
+Jenkins is one of the most popular open-source automation servers, often used to orchestrate continuous integration (CI)
+and/or continuous deployment (CD) workflows.
 
-Configuring Jenkins is typically done manually through a web-based setup wizard; this can be a slow, error-prone, and non-scalable process. In addition to that,
-configurations cannot be tracked in a version control system (VCS) like Git, nor be under the scrutiny of any code review process.
+Configuring Jenkins is typically done manually through a web-based setup wizard; this can be a slow, error-prone, and 
+non-scalable process. In addition to that, configurations cannot be tracked in a version control system (VCS) like Git, 
+nor be under the scrutiny of any code review process.
 
 In this repo, we automate the installation and configuration of Jenkins using Docker and the Jenkins Configuration as Code (JCasC) method.
 

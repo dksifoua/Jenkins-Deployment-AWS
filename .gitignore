@@ -1,4 +1,5 @@
 .idea/
+.terraform/
 
-.env
-jenkins_agent*
+*.lock.hcl
+*.tfstate
